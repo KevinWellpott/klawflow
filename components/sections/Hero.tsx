@@ -79,7 +79,6 @@ export default function Hero() {
             <EmailForm
               placeholder="deine@email.de"
               buttonLabel="Früh­zugang sichern"
-              successMessage="Top! Du bist auf der Warteliste. Wir melden uns bald."
             />
           </Box>
 

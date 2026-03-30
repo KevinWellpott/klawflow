@@ -74,7 +74,6 @@ export default function FinalCTA() {
             <EmailForm
               placeholder="deine@email.de"
               buttonLabel="Early Access sichern"
-              successMessage="Perfekt! Du bist auf der Early-Access-Liste."
             />
           </Box>
 
