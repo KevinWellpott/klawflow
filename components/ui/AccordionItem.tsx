@@ -16,8 +16,14 @@ interface AccordionItemProps {
 
 export default function AccordionItem({ question, answer }: AccordionItemProps) {
   return (
-    <ChakraAccordionItem>
-      <AccordionButton py={5} px={0} _hover={{ bg: 'transparent' }}>
+    <ChakraAccordionItem
+      className="glass"
+      border="none"
+      borderRadius="lg"
+      mb={3}
+      overflow="hidden"
+    >
+      <AccordionButton py={5} px={{ base: 4, md: 5 }} _hover={{ bg: 'rgba(255,255,255,0.03)' }}>
         <Box flex="1" textAlign="left">
           <Text color="white" fontWeight="medium" fontSize={{ base: 'sm', md: 'md' }}>
             {question}
@@ -25,7 +31,7 @@ export default function AccordionItem({ question, answer }: AccordionItemProps) 
         </Box>
         <AccordionIcon color="gray.400" />
       </AccordionButton>
-      <AccordionPanel pb={5} px={0}>
+      <AccordionPanel pb={5} px={{ base: 4, md: 5 }} pt={0}>
         <Text color="gray.400" fontSize="sm" lineHeight="relaxed">
           {answer}
         </Text>

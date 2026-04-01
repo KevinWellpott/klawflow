@@ -13,6 +13,7 @@ import {
 import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';
 import Button from '../../components/ui/Button';
+import { containerMaxW, sectionPx } from '@/lib/sectionTokens';
 
 interface Props {
   email: string;
@@ -45,7 +46,8 @@ export default function WartelisteContent({ email, isVerified, hasParams }: Prop
   if (hasParams && !isVerified) {
     return (
       <Box as="main" minH="80vh" display="flex" alignItems="center">
-        <Container maxW="560px" px={{ base: 5, md: 8 }}>
+        <Container maxW={containerMaxW} px={sectionPx} w="full">
+          <Box maxW="560px" mx="auto" w="full">
           <VStack spacing={6} textAlign="center">
             <Box
               bg="rgba(239,68,68,0.1)"
@@ -69,14 +71,16 @@ export default function WartelisteContent({ email, isVerified, hasParams }: Prop
               </Button>
             </NextLink>
           </VStack>
+          </Box>
         </Container>
       </Box>
     );
   }
 
   return (
-    <Box as="main" py={{ base: '4rem', md: '6rem' }}>
-      <Container maxW="680px" px={{ base: 5, md: 8 }}>
+    <Box as="main" py={{ base: '3rem', sm: '4rem', md: '6rem' }}>
+      <Container maxW={containerMaxW} px={sectionPx} w="full">
+        <Box maxW="680px" mx="auto" w="full">
         <VStack spacing={12}>
 
           {/* Success Header */}
@@ -136,15 +140,15 @@ export default function WartelisteContent({ email, isVerified, hasParams }: Prop
                     flexShrink={0}
                     w="40px"
                     h="40px"
-                    bg="rgba(124,111,255,0.1)"
-                    border="1px solid rgba(124,111,255,0.2)"
+                    bg="rgba(209,254,73,0.1)"
+                    border="1px solid rgba(209,254,73,0.2)"
                     borderRadius="xl"
                     display="flex"
                     alignItems="center"
                     justifyContent="center"
                     fontSize="xs"
                     fontWeight="extrabold"
-                    color="#7C6FFF"
+                    color="#D1FE49"
                   >
                     {s.step}
                   </Box>
@@ -176,6 +180,7 @@ export default function WartelisteContent({ email, isVerified, hasParams }: Prop
           </VStack>
 
         </VStack>
+        </Box>
       </Container>
     </Box>
   );

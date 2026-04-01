@@ -1,71 +1,68 @@
 'use client';
 
-import { Box, Container, Heading, Text, VStack, Accordion } from '@chakra-ui/react';
+import { Box, Heading, Text, VStack, Accordion } from '@chakra-ui/react';
 import AccordionItem from '../ui/AccordionItem';
+import SectionContainer from '../ui/SectionContainer';
+import { sectionGapContent, sectionGapHeader, sectionHeadingProps } from '@/lib/sectionTokens';
 
 const faqs = [
   {
-    question: 'Wann kann ich mit Klawflow starten?',
+    question: 'Wann ist der Launch?',
     answer:
-      'Klawflow befindet sich aktuell in der Early-Access-Phase. Wenn du dich jetzt einträgst, erhältst du bevorzugten Zugang sobald wir den nächsten Platz freigeben. Wir informieren dich per E-Mail über deinen Starttermin.',
+      'Geplanter Launch Q2 2026. Early Access exklusiv für Wartelisten-Mitglieder – du erhältst den genauen Termin per E-Mail.',
   },
   {
-    question: 'Was kostet Klawflow?',
+    question: 'Was kostet das?',
     answer:
-      'Early-Access-Mitglieder erhalten Klawflow zu einem vergünstigten Einführungspreis. Die genauen Konditionen erfährst du bei der Onboarding-Session. Keine versteckten Kosten, kein langfristiger Vertrag.',
+      'Geplant: Core 89 €, Growth 189 €, Elite 349 € pro Monat (zzgl. MwSt.). In der Beta sind alle Features für Wartelisten-Teilnehmer kostenlos testbar – Details vor Launch.',
   },
   {
     question: 'Brauche ich technische Vorkenntnisse?',
     answer:
-      'Nein. Klawflow ist für Unternehmer und Vertriebsteams konzipiert, nicht für Entwickler. Das Setup dauert unter 30 Minuten – wir führen dich Schritt für Schritt durch die Einrichtung.',
+      'Nein. 1-Klick-Connect zu Klaviyo, vorgebaute Flow-Templates und geführte Next-Best-Actions – ohne Entwickler.',
   },
   {
-    question: 'Welche CRM-Systeme werden unterstützt?',
+    question: 'Kann ich jederzeit kündigen?',
     answer:
-      'Klawflow lässt sich mit den gängigsten CRM-Systemen verbinden (HubSpot, Pipedrive, Salesforce u. a.) sowie über CSV-Import für alle anderen. Weitere Integrationen sind in Planung.',
+      'Ja. Monatlich kündbar, keine Mindestlaufzeit, keine Kündigungsfristen aus dem Hut.',
   },
   {
-    question: 'Kann ich Klawflow jederzeit kündigen?',
+    question: 'Wie sicher sind meine Daten?',
     answer:
-      'Ja. Es gibt keine Mindestvertragslaufzeit. Du kannst deinen Account monatlich kündigen – ohne Angabe von Gründen, ohne Ausfallgebühren.',
+      'DSGVO-konform, verschlüsselte Verbindung zu Klaviyo, Hosting in der EU. Kein Weiterverkauf von Daten.',
   },
   {
-    question: 'Wie sicher sind meine Kundendaten?',
+    question: 'Was passiert nach der Anmeldung?',
     answer:
-      'Alle Daten werden DSGVO-konform auf europäischen Servern verarbeitet und gespeichert. Wir verkaufen keine Daten an Dritte und arbeiten mit modernen Verschlüsselungsstandards.',
+      'Du erhältst eine Bestätigungsmail. Wir melden uns mit Launch-Datum, Early-Access-Zugang und optionalem Onboarding-Call.',
   },
 ];
 
 export default function FAQ() {
   return (
-    <Box as="section" py={{ base: '4rem', md: '6rem', lg: '8rem' }}>
-      <Container maxW="1200px" px={{ base: 5, md: 8 }}>
-        <VStack spacing={{ base: 10, md: 14 }}>
-          {/* Header */}
-          <VStack spacing={4} textAlign="center" maxW="600px" mx="auto">
-            <Text fontSize="xs" color="#7C6FFF" fontWeight="semibold" letterSpacing="0.1em" textTransform="uppercase">
-              FAQ
-            </Text>
-            <Heading
-              as="h2"
-              fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
-              color="white"
-              fontWeight="bold"
-              letterSpacing="-0.02em"
-              lineHeight={1.15}
-            >
-              Häufige Fragen
-            </Heading>
-          </VStack>
-
-          {/* Accordion */}
-          <Accordion allowToggle w="full" maxW="760px" mx="auto">
-            {faqs.map((faq, i) => (
-              <AccordionItem key={i} question={faq.question} answer={faq.answer} />
-            ))}
-          </Accordion>
+    <SectionContainer>
+      <VStack spacing={sectionGapContent} align="stretch" w="full">
+        <VStack spacing={sectionGapHeader} align="flex-start" w="full" maxW="48rem">
+          <Text
+            fontSize="xs"
+            color="rgba(209,254,73,0.85)"
+            fontWeight="semibold"
+            letterSpacing="0.1em"
+            textTransform="uppercase"
+          >
+            FAQ
+          </Text>
+          <Heading as="h2" {...sectionHeadingProps}>
+            Häufige Fragen
+          </Heading>
         </VStack>
-      </Container>
-    </Box>
+
+        <Accordion allowToggle w="full" maxW="48rem">
+          {faqs.map((faq, i) => (
+            <AccordionItem key={i} question={faq.question} answer={faq.answer} />
+          ))}
+        </Accordion>
+      </VStack>
+    </SectionContainer>
   );
 }

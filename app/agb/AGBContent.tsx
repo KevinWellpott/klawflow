@@ -1,11 +1,13 @@
 'use client';
 
 import { Box, Container, Heading, Text, VStack } from '@chakra-ui/react';
+import { containerMaxW, sectionPx } from '@/lib/sectionTokens';
 
 export default function AGBContent() {
   return (
-    <Box as="main" py={{ base: '4rem', md: '6rem' }}>
-      <Container maxW="760px" px={{ base: 5, md: 8 }}>
+    <Box as="main" py={{ base: '3rem', sm: '4rem', md: '6rem' }}>
+      <Container maxW={containerMaxW} px={sectionPx} w="full">
+        <Box maxW="760px" mx="auto" w="full">
         <VStack align="flex-start" spacing={8}>
           <Heading as="h1" fontSize={{ base: '2xl', md: '3xl' }} color="white" fontWeight="bold">
             Allgemeine Geschäftsbedingungen
@@ -52,6 +54,7 @@ export default function AGBContent() {
             </Text>
           </Box>
         </VStack>
+        </Box>
       </Container>
     </Box>
   );

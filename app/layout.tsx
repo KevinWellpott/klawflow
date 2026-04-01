@@ -6,9 +6,9 @@ import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 
 export const metadata: Metadata = {
-  title: 'Klawflow – Mehr Revenue aus deinen bestehenden Kunden',
+  title: 'Klawflow – Mehr Umsatz aus Klaviyo, ohne Agentur',
   description:
-    'Klawflow automatisiert dein Upselling & Cross-Selling mit KI-gestützten Flow-Templates – ohne Agentur, ohne Technik-Stress.',
+    'Warteliste: Automatisierte Flows, smarte Segmentierung und ein Klaviyo-Dashboard für DTC-Brands mit 60k–5M € Umsatz.',
 };
 
 export default function RootLayout({
@@ -22,10 +22,14 @@ export default function RootLayout({
         <ColorModeScript initialColorMode="dark" />
       </head>
       <body suppressHydrationWarning>
+        <div className="page-bg-layer" aria-hidden />
+        <div className="page-glass-layer" aria-hidden />
         <Providers>
-          <Header />
-          <main style={{ paddingTop: '64px' }}>{children}</main>
-          <Footer />
+          <div className="page-root">
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>

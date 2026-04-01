@@ -24,13 +24,7 @@ export default function CalendlyModal({
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl" isCentered>
       <ModalOverlay bg="rgba(0,0,0,0.8)" backdropFilter="blur(8px)" sx={{ WebkitBackdropFilter: 'blur(8px)' }} />
-      <ModalContent
-        bg="#111111"
-        border="1px solid rgba(255,255,255,0.08)"
-        borderRadius="2xl"
-        mx={4}
-        overflow="hidden"
-      >
+      <ModalContent borderRadius="2xl" mx={4} overflow="hidden">
         <ModalHeader color="white" fontSize="lg" fontWeight="bold" pt={6} pb={0}>
           Kostenlose Strategie-Session buchen
         </ModalHeader>

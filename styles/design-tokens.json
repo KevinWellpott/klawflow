@@ -1,23 +1,28 @@
 {
   "colors": {
-    "background": "#0A0A0A",
-    "surface": "#111111",
-    "surfaceElevated": "#1A1A1A",
-    "border": "rgba(255,255,255,0.08)",
+    "background": "#0a0a0f",
+    "surface": "#0A0A0A",
+    "surfaceElevated": "#111111",
+    "border": "rgba(255,255,255,0.06)",
+    "borderSubtle": "rgba(255,255,255,0.04)",
     "primary": "#FFFFFF",
-    "primaryForeground": "#0A0A0A",
-    "secondary": "rgba(255,255,255,0.06)",
-    "accent": "#7C6FFF",
-    "accentHover": "#6A5FFF",
+    "primaryForeground": "#000000",
+    "secondary": "rgba(255,255,255,0.05)",
+    "accent": "#D1FE49",
+    "accentHover": "#BEE63F",
+    "accentMuted": "#B8E86A",
+    "accentSoft": "rgba(209, 254, 73, 0.12)",
+    "accentGlow": "rgba(209, 254, 73, 0.12)",
+    "accentGlowStrong": "rgba(209, 254, 73, 0.28)",
     "textHeading": "#FFFFFF",
-    "textBody": "#A0A0A0",
-    "textMuted": "#6B6B6B",
+    "textBody": "#A1A1AA",
+    "textMuted": "#71717A",
     "success": "#22C55E",
     "error": "#EF4444",
     "glass": {
-      "background": "rgba(255,255,255,0.04)",
-      "border": "rgba(255,255,255,0.08)",
-      "shadow": "0 8px 32px rgba(0,0,0,0.4)"
+      "background": "rgba(10, 10, 10, 0.72)",
+      "border": "rgba(255,255,255,0.06)",
+      "shadow": "0 8px 48px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.04)"
     }
   },
   "typography": {
@@ -46,10 +51,10 @@
       "extrabold": 800
     },
     "lineHeights": {
-      "tight": 1.1,
-      "snug": 1.25,
+      "tight": 1.05,
+      "snug": 1.2,
       "normal": 1.5,
-      "relaxed": 1.625,
+      "relaxed": 1.65,
       "loose": 2
     }
   },
@@ -68,11 +73,26 @@
       "lg": "8rem"
     }
   },
+  "section": {
+    "py": { "base": "3rem", "sm": "4rem", "md": "6rem" },
+    "px": { "base": "1rem", "sm": "1.25rem", "md": "1.5rem", "lg": "2rem" },
+    "pyHero": { "base": "2.5rem", "sm": "3rem", "md": "6rem" }
+  },
   "radii": {
     "sm": "6px",
     "md": "10px",
-    "lg": "16px",
-    "xl": "24px",
+    "lg": "14px",
+    "xl": "20px",
+    "card": "28px",
     "full": "9999px"
+  },
+  "glassmorphism": {
+    "backdropBlur": "18px",
+    "backdropBlurMobile": "12px",
+    "boxShadow": "0 16px 48px rgba(0, 0, 0, 0.45)",
+    "boxShadowHover": "0 22px 56px rgba(0, 0, 0, 0.5)",
+    "background": "rgba(14, 14, 14, 0.58)",
+    "hoverBackground": "rgba(20, 20, 20, 0.68)",
+    "transition": "all 0.3s ease"
   }
 }

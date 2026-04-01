@@ -3,6 +3,12 @@
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import tokens from '../styles/design-tokens.json';
 
+const A = tokens.colors.accent;
+const AH = tokens.colors.accentHover;
+const G = tokens.glassmorphism;
+const glassBlur = `blur(${G.backdropBlur})`;
+const glassBlurMobile = `blur(${G.backdropBlurMobile})`;
+
 const theme = extendTheme({
   config: {
     initialColorMode: 'dark',
@@ -11,16 +17,16 @@ const theme = extendTheme({
   breakpoints: tokens.breakpoints,
   colors: {
     brand: {
-      50: '#f0f0ff',
-      100: '#e0e0ff',
-      200: '#c7c6ff',
-      300: '#a8a5ff',
-      400: '#8a84ff',
-      500: tokens.colors.accent,
-      600: tokens.colors.accentHover,
-      700: '#5649e0',
-      800: '#4238b8',
-      900: '#312890',
+      50: '#f7ffe8',
+      100: '#e8ffc8',
+      200: '#d4f88a',
+      300: '#c8f06a',
+      400: '#c4f855',
+      500: A,
+      600: AH,
+      700: '#9FD632',
+      800: '#7FB828',
+      900: '#5a8a1a',
     },
     gray: {
       50: '#fafafa',
@@ -32,9 +38,9 @@ const theme = extendTheme({
       600: '#52525b',
       700: '#3f3f46',
       800: '#27272a',
-      850: '#1a1a1a',
-      900: '#111111',
-      950: '#0a0a0a',
+      850: '#18181b',
+      900: '#0a0a0a',
+      950: '#000000',
     },
   },
   fonts: {
@@ -48,21 +54,57 @@ const theme = extendTheme({
   styles: {
     global: {
       'html, body': {
-        backgroundColor: tokens.colors.background,
+        backgroundColor: 'transparent',
         color: tokens.colors.textBody,
         fontFamily: tokens.typography.fontFamily,
         scrollBehavior: 'smooth',
+        WebkitTapHighlightColor: 'transparent',
       },
       '::selection': {
-        backgroundColor: tokens.colors.accent,
-        color: '#fff',
+        backgroundColor: 'rgba(209, 254, 73, 0.35)',
+        color: '#000000',
       },
       '.glass': {
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-        backgroundColor: tokens.colors.glass.background,
-        border: `1px solid ${tokens.colors.glass.border}`,
-        boxShadow: tokens.colors.glass.shadow,
+        WebkitBackdropFilter: `${glassBlur} saturate(100%)`,
+        backdropFilter: `${glassBlur} saturate(100%)`,
+        backgroundColor: G.background,
+        border: 'none',
+        boxShadow: G.boxShadow,
+        transition: G.transition,
+        '&:hover': {
+          backgroundColor: G.hoverBackground,
+          boxShadow: G.boxShadowHover,
+        },
+      },
+      '.glass-card': {
+        WebkitBackdropFilter: `${glassBlur} saturate(100%)`,
+        backdropFilter: `${glassBlur} saturate(100%)`,
+        backgroundColor: G.background,
+        border: 'none',
+        boxShadow: G.boxShadow,
+        transition: G.transition,
+        borderRadius: tokens.radii.card,
+        padding: '1rem',
+        '@media screen and (min-width: 48em)': {
+          padding: '1.5rem',
+        },
+        '&:hover': {
+          transform: 'translateY(-4px)',
+          backgroundColor: G.hoverBackground,
+          boxShadow: G.boxShadowHover,
+        },
+      },
+      '.glass.glass-nav': {
+        borderRadius: '0',
+        '&:hover': {
+          transform: 'none',
+        },
+      },
+      '@media screen and (max-width: 47.99em)': {
+        '.glass:not(.glass-nav), .glass-card': {
+          WebkitBackdropFilter: glassBlurMobile,
+          backdropFilter: glassBlurMobile,
+        },
       },
     },
   },
@@ -76,16 +118,25 @@ const theme = extendTheme({
       },
       variants: {
         primary: {
-          bg: tokens.colors.primary,
-          color: tokens.colors.primaryForeground,
-          _hover: { bg: 'rgba(255,255,255,0.88)', transform: 'translateY(-1px)' },
-          _active: { bg: 'rgba(255,255,255,0.75)', transform: 'translateY(0)' },
+          bg: A,
+          color: '#000000',
+          letterSpacing: '-0.02em',
+          _hover: {
+            bg: '#E4FF70',
+            transform: 'translateY(-1px)',
+            boxShadow: '0 8px 32px rgba(209, 254, 73, 0.25)',
+          },
+          _active: { bg: AH, transform: 'translateY(0)' },
         },
         secondary: {
-          bg: 'transparent',
-          color: tokens.colors.primary,
-          border: `1px solid rgba(255,255,255,0.2)`,
-          _hover: { borderColor: 'rgba(255,255,255,0.5)', bg: 'rgba(255,255,255,0.04)' },
+          bg: 'rgba(255,255,255,0.06)',
+          color: 'rgba(255,255,255,0.9)',
+          border: 'none',
+          letterSpacing: '-0.02em',
+          _hover: {
+            color: '#ffffff',
+            bg: 'rgba(255,255,255,0.1)',
+          },
         },
         ghost: {
           bg: 'transparent',
@@ -93,10 +144,15 @@ const theme = extendTheme({
           _hover: { color: tokens.colors.primary, bg: 'transparent' },
         },
         accent: {
-          bg: tokens.colors.accent,
-          color: '#fff',
-          _hover: { bg: tokens.colors.accentHover, transform: 'translateY(-1px)' },
-          _active: { bg: tokens.colors.accentHover, transform: 'translateY(0)' },
+          bg: A,
+          color: '#000000',
+          letterSpacing: '-0.02em',
+          _hover: {
+            bg: '#E4FF70',
+            transform: 'translateY(-1px)',
+            boxShadow: '0 8px 32px rgba(209, 254, 73, 0.3)',
+          },
+          _active: { bg: AH, transform: 'translateY(0)' },
         },
       },
       sizes: {
@@ -110,12 +166,18 @@ const theme = extendTheme({
       variants: {
         filled: {
           field: {
-            bg: tokens.colors.surface,
-            border: `1px solid ${tokens.colors.border}`,
+            bg: 'rgba(255,255,255,0.08)',
+            border: 'none',
             borderRadius: tokens.radii.full,
             color: tokens.colors.primary,
-            _hover: { bg: tokens.colors.surfaceElevated, borderColor: 'rgba(255,255,255,0.15)' },
-            _focus: { bg: tokens.colors.surfaceElevated, borderColor: tokens.colors.accent, boxShadow: 'none' },
+            transition: 'all 0.2s ease',
+            _hover: {
+              bg: 'rgba(255,255,255,0.12)',
+            },
+            _focus: {
+              bg: 'rgba(12,12,12,0.92)',
+              boxShadow: `0 0 0 2px ${A}`,
+            },
             _placeholder: { color: tokens.colors.textMuted },
           },
         },
@@ -128,9 +190,12 @@ const theme = extendTheme({
     Modal: {
       baseStyle: {
         dialog: {
-          bg: tokens.colors.surface,
-          border: `1px solid ${tokens.colors.border}`,
+          bg: G.background,
+          border: 'none',
           borderRadius: tokens.radii.xl,
+          backdropFilter: `${glassBlur} saturate(100%)`,
+          WebkitBackdropFilter: `${glassBlur} saturate(100%)`,
+          boxShadow: G.boxShadow,
         },
         header: { color: tokens.colors.textHeading },
         closeButton: { color: tokens.colors.textBody },
@@ -138,15 +203,16 @@ const theme = extendTheme({
     },
     Accordion: {
       baseStyle: {
-        container: { border: 'none', borderBottom: `1px solid ${tokens.colors.border}` },
+        container: { border: 'none' },
         button: {
           color: tokens.colors.textHeading,
           fontWeight: tokens.typography.fontWeights.medium,
-          _hover: { bg: 'transparent', color: tokens.colors.primary },
+          letterSpacing: '-0.01em',
+          _hover: { bg: 'transparent', color: '#fff' },
           _focus: { boxShadow: 'none' },
-          py: 5,
+          py: 6,
         },
-        panel: { color: tokens.colors.textBody, pb: 5 },
+        panel: { color: tokens.colors.textBody, pb: 6, lineHeight: 1.7 },
       },
     },
   },

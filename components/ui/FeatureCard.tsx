@@ -7,47 +7,56 @@ interface FeatureCardProps {
   icon: ReactNode;
   title: string;
   description: string;
-  glass?: boolean;
+  outcome?: string;
 }
 
-export default function FeatureCard({
-  icon,
-  title,
-  description,
-  glass = false,
-}: FeatureCardProps) {
+export default function FeatureCard({ icon, title, description, outcome }: FeatureCardProps) {
   return (
     <Box
-      className={glass ? 'glass' : undefined}
-      bg={glass ? undefined : 'rgba(255,255,255,0.03)'}
-      border={glass ? undefined : '1px solid rgba(255,255,255,0.07)'}
-      borderRadius="2xl"
-      p={{ base: 6, md: 8 }}
-      transition="all 0.3s ease"
-      _hover={{
-        borderColor: 'rgba(255,255,255,0.15)',
-        bg: 'rgba(255,255,255,0.05)',
-        transform: 'translateY(-4px)',
-      }}
+      className="glass-card"
       h="full"
+      p={{ base: 8, md: 10 }}
+      sx={{
+        '&:hover': {
+          boxShadow: '0 28px 52px rgba(0,0,0,0.4), 0 0 40px rgba(209,254,73,0.08)',
+        },
+      }}
     >
       <VStack align="flex-start" spacing={4}>
         <Box
-          fontSize="2xl"
-          bg="rgba(124,111,255,0.12)"
-          border="1px solid rgba(124,111,255,0.2)"
-          borderRadius="xl"
-          p={3}
+          fontSize="xl"
+          bg="rgba(209,254,73,0.1)"
+          borderRadius="16px"
+          p="10px"
           display="inline-flex"
           alignItems="center"
           justifyContent="center"
         >
           {icon}
         </Box>
-        <Heading as="h3" fontSize={{ base: 'md', md: 'lg' }} color="white" fontWeight="semibold">
+        {outcome && (
+          <Text
+            fontSize="sm"
+            color="#EDEDED"
+            fontWeight="semibold"
+            letterSpacing="0.04em"
+            textTransform="uppercase"
+            lineHeight={1.4}
+          >
+            {outcome}
+          </Text>
+        )}
+        <Heading
+          as="h3"
+          fontSize="md"
+          color="white"
+          fontWeight="semibold"
+          letterSpacing="-0.02em"
+          lineHeight={1.25}
+        >
           {title}
         </Heading>
-        <Text fontSize="sm" color="gray.400" lineHeight="relaxed">
+        <Text fontSize="sm" color="#A1A1AA" lineHeight={1.5}>
           {description}
         </Text>
       </VStack>

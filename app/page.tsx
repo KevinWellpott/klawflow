@@ -1,21 +1,23 @@
 import Hero from '../components/sections/Hero';
-import ProblemSolution from '../components/sections/ProblemSolution';
+import ProblemAgitation from '../components/sections/ProblemAgitation';
 import HowItWorks from '../components/sections/HowItWorks';
-import Features from '../components/sections/Features';
-import ROI from '../components/sections/ROI';
-import FinalCTA from '../components/sections/FinalCTA';
+import FeaturesGrid from '../components/sections/FeaturesGrid';
+import CompareAlternatives from '../components/sections/CompareAlternatives';
+import TrustLayer from '../components/sections/TrustLayer';
 import FAQ from '../components/sections/FAQ';
+import FinalCTA from '../components/sections/FinalCTA';
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <ProblemSolution />
+      <ProblemAgitation />
       <HowItWorks />
-      <Features />
-      <ROI />
-      <FinalCTA />
+      <FeaturesGrid />
+      <CompareAlternatives />
+      <TrustLayer />
       <FAQ />
+      <FinalCTA />
     </>
   );
 }

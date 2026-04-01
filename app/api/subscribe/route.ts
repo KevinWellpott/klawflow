@@ -55,11 +55,11 @@ function buildConfirmationEmail(email: string, confirmUrl: string): string {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bestätige deine Anmeldung – Klawflow</title>
 </head>
-<body style="margin:0;padding:0;background:#0a0a0a;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0a;padding:40px 20px;">
+<body style="margin:0;padding:0;background:#000000;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#000000;padding:40px 20px;">
     <tr>
       <td align="center">
-        <table width="560" cellpadding="0" cellspacing="0" style="background:#111111;border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden;max-width:560px;width:100%;">
+        <table width="560" cellpadding="0" cellspacing="0" style="background:#0a0a0a;border:1px solid rgba(255,255,255,0.06);border-radius:16px;overflow:hidden;max-width:560px;width:100%;">
 
           <!-- Header -->
           <tr>
@@ -87,9 +87,9 @@ function buildConfirmationEmail(email: string, confirmUrl: string): string {
               <!-- CTA Button -->
               <table cellpadding="0" cellspacing="0">
                 <tr>
-                  <td style="border-radius:9999px;background:#ffffff;">
+                  <td style="border-radius:9999px;background:#D1FE49;">
                     <a href="${confirmUrl}"
-                       style="display:inline-block;padding:14px 28px;font-size:15px;font-weight:600;color:#0a0a0a;text-decoration:none;border-radius:9999px;letter-spacing:-0.01em;">
+                       style="display:inline-block;padding:14px 28px;font-size:15px;font-weight:600;color:#000000;text-decoration:none;border-radius:9999px;letter-spacing:-0.01em;">
                       Anmeldung bestätigen →
                     </a>
                   </td>
@@ -99,7 +99,7 @@ function buildConfirmationEmail(email: string, confirmUrl: string): string {
               <!-- Fallback link -->
               <p style="margin:24px 0 0;font-size:12px;color:#6b6b6b;word-break:break-all;">
                 Wenn der Button nicht funktioniert, kopiere diesen Link in deinen Browser:<br/>
-                <a href="${confirmUrl}" style="color:#7c6fff;text-decoration:none;">${confirmUrl}</a>
+                <a href="${confirmUrl}" style="color:#D1FE49;text-decoration:none;">${confirmUrl}</a>
               </p>
             </td>
           </tr>

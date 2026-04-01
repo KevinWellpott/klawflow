@@ -4,6 +4,7 @@ import { Box, Container, Heading, Text, VStack, HStack, useDisclosure } from '@c
 import EmailForm from '../ui/EmailForm';
 import Button from '../ui/Button';
 import CalendlyModal from '../ui/CalendlyModal';
+import { sectionPx, containerMaxW, sectionPyHero, heroHeadingProps } from '@/lib/sectionTokens';
 
 export default function Hero() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -11,90 +12,79 @@ export default function Hero() {
   return (
     <Box
       as="section"
-      minH="100vh"
+      minH={{ base: 'calc(100dvh - 72px)', md: 'calc(100dvh - 88px)' }}
       display="flex"
       alignItems="center"
       position="relative"
       overflow="hidden"
-      py={{ base: 24, md: 0 }}
+      py={sectionPyHero}
+      bg="transparent"
     >
-      {/* Subtle radial glow */}
-      <Box
-        position="absolute"
-        top="20%"
-        left="50%"
-        transform="translateX(-50%)"
-        w={{ base: '600px', md: '900px' }}
-        h={{ base: '600px', md: '900px' }}
-        bg="radial-gradient(circle, rgba(124,111,255,0.08) 0%, transparent 70%)"
-        pointerEvents="none"
-      />
+      <Container maxW={containerMaxW} px={sectionPx} position="relative" zIndex={1}>
+        <VStack spacing={{ base: 5, md: 7 }} align="center" textAlign="center" maxW="880px" mx="auto">
 
-      <Container maxW="1200px" px={{ base: 5, md: 8 }} position="relative" zIndex={1}>
-        <VStack spacing={{ base: 6, md: 8 }} align="center" textAlign="center" maxW="820px" mx="auto">
-          {/* Badge */}
-          <HStack
-            spacing={2}
-            px={4}
-            py={2}
-            bg="rgba(124,111,255,0.1)"
-            border="1px solid rgba(124,111,255,0.2)"
-            borderRadius="full"
-          >
-            <Box w={2} h={2} bg="#7C6FFF" borderRadius="full" />
-            <Text fontSize="xs" color="gray.300" fontWeight="medium" letterSpacing="0.05em">
-              JETZT IN DER EARLY-ACCESS-PHASE
+          <HStack spacing={2} px={4} py="7px" className="badge-gradient">
+            <Box
+              w="6px"
+              h="6px"
+              bg="#D1FE49"
+              borderRadius="full"
+              boxShadow="0 0 8px rgba(209,254,73,0.8)"
+            />
+            <Text fontSize="xs" color="rgba(255,255,255,0.65)" fontWeight="medium" letterSpacing="0.06em">
+              WARTELISTE · KLAVIYO-FOKUS
             </Text>
           </HStack>
 
-          {/* Headline */}
-          <Heading
-            as="h1"
-            fontSize={{ base: '2.8rem', md: '4rem', lg: '5rem' }}
-            fontWeight="extrabold"
-            color="white"
-            lineHeight={1.05}
-            letterSpacing="-0.03em"
-          >
-            Mehr Revenue aus{' '}
-            <Box as="span" color="#7C6FFF">
-              deinen
-            </Box>{' '}
-            bestehenden Kunden.
+          <Heading as="h1" {...heroHeadingProps} className="gradient-text">
+            Hol 20% mehr Umsatz aus Klaviyo –{' '}
+            <Box
+              as="span"
+              sx={{
+                background: 'linear-gradient(135deg, #E8FF9A 0%, #D1FE49 50%, #9FD632 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              ohne Agentur
+            </Box>
           </Heading>
 
-          {/* Subtext */}
           <Text
-            fontSize={{ base: 'md', md: 'lg', lg: 'xl' }}
-            color="gray.400"
-            maxW="600px"
-            lineHeight="relaxed"
+            fontSize={{ base: 'md', md: 'lg' }}
+            color="#A1A1AA"
+            maxW="640px"
+            lineHeight={1.5}
+            letterSpacing="-0.01em"
           >
-            Klawflow automatisiert dein Upselling & Cross-Selling mit KI-gestützten Flow-Templates –
-            ohne Agentur, ohne Technik-Stress. Einfach aktivieren, Ergebnisse sehen.
+            Automatisierte Flows, smarte Segmentierung und ein Dashboard, das dir zeigt, wo Geld liegt.
+            Alles ohne teure Experten – für E-Commerce-Brands mit 60k–5M € Jahresumsatz, die Klaviyo schon zahlen,
+            aber nur einen Bruchteil ausschöpfen.
           </Text>
 
-          {/* Email Form */}
-          <Box w="full" display="flex" justifyContent="center">
-            <EmailForm
-              placeholder="deine@email.de"
-              buttonLabel="Früh­zugang sichern"
-            />
+          <Box id="waitlist" w="full" display="flex" flexDirection="column" alignItems="center" gap={3}>
+            <EmailForm placeholder="deine@firma.de" buttonLabel="Auf die Warteliste" />
+            <Text fontSize="xs" color="#71717A">
+              Keine Kreditkarte. Kündigung jederzeit.
+            </Text>
           </Box>
 
-          {/* Secondary CTA */}
           <Button variant="secondary" size="md" onClick={onOpen}>
-            Kostenlose Strategie-Session buchen
+            Kostenlose Strategie buchen
           </Button>
 
-          {/* Social proof */}
-          <Text fontSize="xs" color="gray.600">
-            Bereits{' '}
-            <Box as="span" color="gray.400" fontWeight="semibold">
-              120+ Unternehmen
-            </Box>{' '}
-            auf der Warteliste · Keine Kreditkarte nötig
-          </Text>
+          <HStack spacing={3} flexWrap="wrap" justify="center">
+            <Text fontSize="xs" color="#D1FE49" fontWeight="semibold" letterSpacing="0.04em">
+              342 warten bereits
+            </Text>
+            <Text fontSize="xs" color="#5C5C70">
+              ·
+            </Text>
+            <Text fontSize="xs" color="#71717A">
+              Kein Spam · Nur Launch-Updates
+            </Text>
+          </HStack>
         </VStack>
       </Container>
 

@@ -1,0 +1,30 @@
+---
+description: Bento-Grids und hochwertige UI-Mockups (SVG/CSS) für Landing-Sections
+globs: components/**/*.tsx
+alwaysApply: false
+---
+
+# Bento-Grids & UI-Mockups (Framer-Style)
+
+## Layout
+
+- **Desktop:** CSS Grid mit `grid-template-columns: 1fr 1fr`, `grid-template-rows: 1fr 1fr`, linke Karte `grid-row: span 2`.
+- **Mobile:** eine Spalte, gleiche Reihenfolge (hohe Karte zuerst, dann die beiden kleinen).
+- **Gap:** 24–32px (`gap={6}` / `gap={8}`), Karten **Border** `#262626`, Surface `#0A0A0A` / `#0d0d0d` innen, **Radius** 24–28px.
+
+## Mockups codieren (ohne Figma-Export)
+
+- **Charts:** `svg` mit `path` + `stroke`, Flächen mit `linearGradient` + Polygon oder `fill` unter der Linie.
+- **Gauges:** `circle` mit `stroke-dasharray` = Umfang, `stroke-dashoffset = Umfang * (1 - pct)`, `transform="rotate(-90 …)"` für Start oben.
+- **Split-Panels:** `Flex` / `Grid`, Sidebar schmaler (30–35%), Preview mit `linear-gradient` oder Platzhaltertext.
+- **Farben (neutral + Akzent):** Zyan `#38BDF8`, Violett `#A855F7`, Brand-Lime `#D1FE49`, Muted `#71717A` / `#888888`.
+
+## Performance
+
+- Keine riesigen PNGs; bevorzugt **inline SVG** oder kleine **CSS-only** Komponenten.
+- `vectorEffect="non-scaling-stroke"` bei skalierenden SVG-Linien optional.
+
+## Externe Tools (manuell in Cursor)
+
+- **shadcn/ui MCP** (falls eingerichtet): Komponenten-Referenz für Cards/Tabs.
+- **Figma:** nur bei Bedarf Screenshots; im Code lieber nachbauen mit Tokens aus `styles/design-tokens.json`.

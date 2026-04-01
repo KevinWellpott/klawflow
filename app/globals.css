@@ -8,20 +8,120 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
+  max-width: 100%;
+  background-color: #0a0a0f;
 }
 
+/**
+ * Hintergrund: Bild (fixed) → Vollflächen-Glas (backdrop-blur) → Inhalt (z-10).
+ * Chakra setzt html/body auf transparent, damit nichts Schwarzes die Layer verdeckt.
+ */
 body {
-  background-color: #0A0A0A;
-  color: #A0A0A0;
+  min-height: 100vh;
+  position: relative;
+  max-width: 100vw;
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+  color: #A1A1AA;
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #0a0a0f;
 }
 
-.glass {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background-color: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+/** Fallback + neutrales Spotlight (kein Farbstich) */
+.page-bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: #0a0a0a;
+  background-image: radial-gradient(circle at 22% 28%, rgba(40, 40, 40, 0.45) 0%, transparent 52%);
+}
+
+.page-bg-layer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/bg-dark-waves.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.25;
+}
+
+/** Vollflächen-Scrim: neutral grau, kein Lila – nur Raster + Vignette */
+.page-glass-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  backdrop-filter: blur(32px) saturate(100%);
+  -webkit-backdrop-filter: blur(32px) saturate(100%);
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.032) 1px, transparent 1px),
+    radial-gradient(ellipse 90% 70% at 50% -25%, rgba(255, 255, 255, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 100% 80% at 100% 50%, rgba(0, 0, 0, 0.22) 0%, transparent 48%),
+    radial-gradient(ellipse 90% 70% at 0% 40%, rgba(0, 0, 0, 0.2) 0%, transparent 45%),
+    linear-gradient(180deg, rgba(6, 6, 6, 0.65) 0%, rgba(0, 0, 0, 0.52) 50%, rgba(5, 5, 5, 0.68) 100%);
+  background-size:
+    26px 26px,
+    auto,
+    auto,
+    auto,
+    auto;
+  background-position: 0 0, center, center, center, center;
+}
+
+.page-glass-layer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.055;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/** Alles sichtbare UI über den Hintergrund-Layern */
+.page-root {
+  position: relative;
+  z-index: 10;
+  isolation: isolate;
+}
+
+/** .glass / .glass-card: zentral in app/providers.tsx (design-tokens.glassmorphism) */
+
+.gradient-text {
+  background: linear-gradient(180deg, #ffffff 0%, #b4b4b4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-accent {
+  background: linear-gradient(135deg, #e8ff9a 0%, #D1FE49 45%, #9FD632 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.badge-gradient {
+  position: relative;
+  background: linear-gradient(#0A0A0A, #0A0A0A) padding-box,
+              linear-gradient(135deg, rgba(209, 254, 73, 0.55) 0%, rgba(209, 254, 73, 0.12) 100%) border-box;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+}
+
+/** Legacy: Sektionen können die Klasse entfernen – Raster sitzt global auf body */
+.dot-grid {
+  background-image: none;
+}
+
+.glow-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(209, 254, 73, 0.35) 50%, transparent 100%);
+  border: none;
 }
